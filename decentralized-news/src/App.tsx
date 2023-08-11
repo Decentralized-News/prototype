@@ -1,12 +1,18 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
 import "./App.css";
+import Home from "./components/home/Home";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const router = createBrowserRouter([
+    { path: "/", element: <Home /> },
+    { path: "*", element: <Navigate to="/" /> },
+  ]);
 
-  return <h1 className="text-3xl font-bold">Decentralized News!</h1>;
+  return <RouterProvider router={router}></RouterProvider>;
 }
 
 export default App;
