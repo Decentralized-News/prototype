@@ -13,6 +13,7 @@ import { useCreateArticleMutation } from "../../services/articleApi";
 const { TextArea } = Input;
 import { SHA256 } from "crypto-js";
 import { Article } from "../../models/CreateArticleRequest";
+import usenotification from "../../utils/usenotification.ts";
 
 const CreateArticle = () => {
     const [content, setContent] = useState("");
@@ -25,6 +26,7 @@ const CreateArticle = () => {
         "0xf12b5e2f8e4a8d0b76d8e4f97b2a5e43f065e9f29b9d2920849a95baf4567d59"
     );
     const [createArticle, {}] = useCreateArticleMutation();
+    const notification = usenotification()
 
     const options: SelectProps["options"] = [
         { value: "Politics", label: "Politics" },
@@ -88,8 +90,10 @@ const CreateArticle = () => {
             console.log(hash);
 
             await createArticle(article);
+            notification("success", "New Article created", "Your article is now tested by the community")
         } catch (err) {
             console.error(err);
+            notification("error", "Article creation failed", "Please try again")
         }
     };
 
