@@ -44,7 +44,7 @@ function App() {
     const router = createBrowserRouter([
         { path: "/", element: <Home /> },
         { path: "/article-detail", element: <ArticleDetail /> },
-        { path: "/article-detail-verify", element: <ArticleDetailVerify /> },
+        { path: "/article-verify", element: <ArticleDetailVerify /> },
         { path: "/create", element: <CreateArticle /> },
         { path: "*", element: <Navigate to="/" /> },
     ]);
