@@ -4,6 +4,10 @@ import { Express } from "express";
 import dotenv from "dotenv";
 
 dotenv.config();
+const logger = require("./middleware/logger");
+const corsOptions = require("./config/corsOptions");
+const cors = require("cors");
+import articleRoutes from "./routes/articleRoutes";
 
 const connectDB = async () => {
     try {
@@ -13,15 +17,13 @@ const connectDB = async () => {
     }
 };
 
-const logger = require("./middleware/logger");
-import articleRoutes from "./routes/articleRoutes";
-
 connectDB();
 
 const app: Express = express();
 const PORT = process.env.PORT || 3500;
 
 app.use(logger);
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

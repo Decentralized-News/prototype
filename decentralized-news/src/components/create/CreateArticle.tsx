@@ -9,8 +9,10 @@ import { useAccount } from "wagmi";
 
 import { DECENTNEWS__ADDRESS } from "../../utils/constants";
 import DecentnewsABI from "../../utils/DecentNewsAbi.json";
-
+import { useCreateArticleMutation } from "../../services/articleApi";
 const { TextArea } = Input;
+import { SHA256 } from "crypto-js";
+import { Article } from "../../models/CreateArticleRequest";
 
 const CreateArticle = () => {
     const [content, setContent] = useState("");
@@ -20,6 +22,7 @@ const CreateArticle = () => {
     const [articleHash, setArticleHash] = useState(
         "0xf12b5e2f8e4a8d0b76d8e4f97b2a5e43f065e9f29b9d2920849a95baf4567d59"
     );
+    const [createArticle, {}] = useCreateArticleMutation();
 
     const options: SelectProps["options"] = [
         { value: "Politics", label: "Politics" },
@@ -27,23 +30,6 @@ const CreateArticle = () => {
         { value: "Science", label: "Science" },
         { value: "Sports", label: "Sports" },
     ];
-
-    const createArticle = async () => {
-        if (articleHash !== "") {
-            try {
-                const { hash } = await writeContract({
-                    account: address,
-                    address: DECENTNEWS__ADDRESS,
-                    abi: DecentnewsABI.abi,
-                    functionName: "createArticle",
-                    args: [articleHash],
-                });
-                console.log(hash);
-            } catch (err) {
-                console.error(err);
-            }
-        }
-    };
 
     const handleChange = (value: string) => {
         console.log(`selected ${value}`);
@@ -58,10 +44,51 @@ const CreateArticle = () => {
         setContent(e.target.value);
     };
 
-    const postArticle = () => {
-        const article = { title, tags, content };
+    function stringToBytes32(input: string) {
+        const encoder = new TextEncoder();
+        const inputBytes = encoder.encode(input);
+        const paddedBytes = new Uint8Array(32);
+        paddedBytes.set(inputBytes);
+
+        return (
+            "0x" +
+            Array.from(paddedBytes)
+                .map((byte) => byte.toString(16).padStart(2, "0"))
+                .join("")
+        );
+    }
+
+    const postArticle = async () => {
+        const articleHash = stringToBytes32(title + content)?.toString() ?? "";
+
+        if (articleHash === "") {
+            return;
+        }
+
+        const article: Article = {
+            hash: articleHash,
+            title,
+            tag: tags[0],
+            content,
+            author: "Unknown",
+            authorOrigin: "No Country",
+        };
         console.log(article);
-        createArticle();
+
+        try {
+            const { hash } = await writeContract({
+                account: address,
+                address: DECENTNEWS__ADDRESS,
+                abi: DecentnewsABI.abi,
+                functionName: "createArticle",
+                args: [articleHash],
+            });
+            console.log(hash);
+
+            await createArticle(article);
+        } catch (err) {
+            console.error(err);
+        }
     };
 
     return (

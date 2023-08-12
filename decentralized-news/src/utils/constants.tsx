@@ -1,18 +1,17 @@
-import { useQuery, gql } from "@apollo/client";
-
+import { gql } from "@apollo/client";
 
 export const APIURL =
-  'https://api.studio.thegraph.com/query/51092/decentnews3/"v0.0.4"';
-  
-export const DECENTNEWS__ADDRESS = "0x1B97f6aEFbB3e0FF57DeE7Fa1722f889f290F357";
+    "https://api.studio.thegraph.com/query/51092/dezentralicednewsmain/version/latest";
+
+export const DECENTNEWS__ADDRESS = "0xe2084e0e85382c52937383f7776536114051a3a0";
 
 export const GET_APPROVED_ARTICLES = gql`
-      {
+    {
         articleApproveds(first: 20, orderBy: transactionHash) {
-          id
-          hash
-          blockNumber
-          blockTimestamp
+            id
+            hash
+            blockNumber
+            blockTimestamp
         }
-      }
+    }
 `;

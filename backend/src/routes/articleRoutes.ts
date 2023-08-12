@@ -3,7 +3,7 @@ import { createArticle, getArticles } from "../controller/articleController";
 
 const router = express.Router();
 
-router.get("/", getArticles);
-router.post("/", createArticle);
+router.post("/get", getArticles);
+router.post("/create", createArticle);
 
 export default router;

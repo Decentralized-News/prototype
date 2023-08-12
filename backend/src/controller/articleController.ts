@@ -33,7 +33,6 @@ const getArticles = async (req: Request, res: Response) => {
         const query = { hash: { $in: hashes } };
 
         const articles = await Article.find(query);
-        console.log(articles);
 
         res.status(200).json({
             articles: articles,
