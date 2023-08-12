@@ -67,7 +67,7 @@ const ArticleDetailSceleton = (props: ArticleProps) => {
                     <Image> ASD </Image>
                 </div>
             </div>
-            <div className="flex flex-wrap justify-center mt-[3rem] gap-[5rem] mr-[1rem]">
+            <div className="flex flex-wrap justify-center mt-[3rem] gap-[5rem] mr-[1rem] mb-[80px]">
                 <p className="text-justify w-5/12 whitespace-pre-line">{leftColumnText}</p>
                 <p className="text-justify w-5/12 whitespace-pre-line">{rightColumnText}</p>
             </div>
