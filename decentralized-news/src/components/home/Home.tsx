@@ -40,7 +40,7 @@ const HomePage = () => {
     const dispatch = useDispatch();
     //@ts-ignore
     const { loading, error, data } = useQuery(GET_APPROVED_ARTICLES);
-
+    //@ts-ignore
     const [getArticles, { data: articlesResponse, isLoading, isError }] =
         useGetArticlesMutation();
 

@@ -11,6 +11,7 @@ import { useGetArticlesMutation } from "../../services/articleApi.tsx";
 
 function ArticleDetailVerify() {
     const { address } = useAccount();
+    //@ts-ignore
     const [assignedArticle, setAssignedArticle] = useState("");
     const [getArticle, { data: articleResponse }] = useGetArticlesMutation();
 

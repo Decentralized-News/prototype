@@ -15,7 +15,7 @@ const slice = createSlice({
             state.article = article;
         },
     },
-
+    //@ts-ignore
     extraReducers: (builder) => {},
 });
 

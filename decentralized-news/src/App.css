@@ -1,15 +1,15 @@
 .politics-gradient {
-    background: linear-gradient(to right, #7465BE, #5379CB);
+    background: linear-gradient(to right, #7465be, #5379cb);
 }
 
 .science-gradient {
-    background: linear-gradient(to right, #EA9C9D, #F29741);
-}
-
-.sports-gradient {
-    background: linear-gradient(to right, #7465BE, #5379CB);
+    background: linear-gradient(to right, #ea9c9d, #f29741);
 }
 
 .economics-gradient {
-    background: linear-gradient(to right, #7465BE, #5379CB);
+    background: linear-gradient(to right, #45ba7b, #219689);
+}
+
+.sports-gradient {
+    background: linear-gradient(to right, #cb558d, #962742);
 }
