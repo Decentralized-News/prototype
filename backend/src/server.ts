@@ -14,6 +14,7 @@ const connectDB = async () => {
 };
 
 const logger = require("./middleware/logger");
+import articleRoutes from "./routes/articleRoutes";
 
 connectDB();
 
@@ -23,6 +24,8 @@ const PORT = process.env.PORT || 3500;
 app.use(logger);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use("/api/article", articleRoutes);
 
 mongoose.connection.once("open", () => {
     console.log("Connected to DecentNewsDB");
