@@ -11,11 +11,8 @@ import { DECENTNEWS__ADDRESS } from "../../utils/constants";
 import DecentnewsABI from "../../utils/DecentNewsAbi.json";
 import { useCreateArticleMutation } from "../../services/articleApi";
 const { TextArea } = Input;
-import { SHA256 } from "crypto-js";
+import { MD5 } from "crypto-js";
 import { Article } from "../../models/CreateArticleRequest";
-import usenotification from "../../utils/usenotification.ts";
-import { createHash } from'crypto';
-
 
 const CreateArticle = () => {
     const [content, setContent] = useState("");
@@ -28,7 +25,7 @@ const CreateArticle = () => {
         "0xf12b5e2f8e4a8d0b76d8e4f97b2a5e43f065e9f29b9d2920849a95baf4567d59"
     );
     const [createArticle, {}] = useCreateArticleMutation();
-    const notification = usenotification()
+
 
     const options: SelectProps["options"] = [
         { value: "Politics", label: "Politics" },
@@ -50,25 +47,12 @@ const CreateArticle = () => {
         setContent(e.target.value);
     };
 
-    function hash(input: string) {
-        return createHash('sha256').update(input).digest('hex');
-    }
     function stringToBytes32(input: string) {
-        const encoder = new TextEncoder();
-        const inputBytes = encoder.encode(input);
-        const paddedBytes = new Uint8Array(32);
-        paddedBytes.set(inputBytes);
-
-        return (
-            "0x" +
-            Array.from(paddedBytes)
-                .map((byte) => byte.toString(16).padStart(2, "0"))
-                .join("")
-        );
+        return MD5(input)
     }
 
     const postArticle = async () => {
-        const articleHash = hash(title + content)?.toString() ?? "";
+        const articleHash = stringToBytes32(title + content)?.toString() ?? "";
 
         if (articleHash === "") {
             return;
@@ -95,10 +79,8 @@ const CreateArticle = () => {
             console.log(hash);
 
             await createArticle(article);
-            notification("success", "New Article created", "Your article is now tested by the community")
         } catch (err) {
             console.error(err);
-            notification("error", "Article creation failed", "Please try again")
         }
     };
 
