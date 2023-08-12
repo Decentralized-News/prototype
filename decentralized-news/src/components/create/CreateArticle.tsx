@@ -4,11 +4,11 @@ import { Input } from "antd";
 import { Select } from "antd";
 import type { SelectProps } from "antd";
 import UploadImageCard from "./UploadImageCard";
-import { writeContract } from 'wagmi/actions';
-import { useAccount } from 'wagmi';
+import { writeContract } from "wagmi/actions";
+import { useAccount } from "wagmi";
 
 import { DECENTNEWS__ADDRESS } from "../../utils/constants";
-import DecentnewsABI from "../../utils/DecentNewsAbi.json"
+import DecentnewsABI from "../../utils/DecentNewsAbi.json";
 
 const { TextArea } = Input;
 
@@ -16,8 +16,10 @@ const CreateArticle = () => {
     const [content, setContent] = useState("");
     const [title, setTitle] = useState("");
     const [tags, setTags] = useState(["Politics"]);
-    const { address } = useAccount()
-    const [articleHash, setArticleHash] = useState("0xf12b5e2f8e4a8d0b76d8e4f97b2a5e43f065e9f29b9d2920849a95baf4567d59");
+    const { address } = useAccount();
+    const [articleHash, setArticleHash] = useState(
+        "0xf12b5e2f8e4a8d0b76d8e4f97b2a5e43f065e9f29b9d2920849a95baf4567d59"
+    );
 
     const options: SelectProps["options"] = [
         { value: "Politics", label: "Politics" },
@@ -27,8 +29,8 @@ const CreateArticle = () => {
     ];
 
     const createArticle = async () => {
-        if(articleHash !== ""){
-            try{
+        if (articleHash !== "") {
+            try {
                 const { hash } = await writeContract({
                     account: address,
                     address: DECENTNEWS__ADDRESS,
@@ -37,11 +39,11 @@ const CreateArticle = () => {
                     args: [articleHash],
                 });
                 console.log(hash);
-            }catch(err){
+            } catch (err) {
                 console.error(err);
             }
         }
-    }
+    };
 
     const handleChange = (value: string) => {
         console.log(`selected ${value}`);
