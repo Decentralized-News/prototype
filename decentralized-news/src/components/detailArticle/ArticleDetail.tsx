@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 
 function ArticleDetail() {
+    //@ts-ignore
     const [getArticle, { data: articleResponse }] = useGetArticlesMutation();
     const article = useSelector((state: RootState) => state.article.article);
 

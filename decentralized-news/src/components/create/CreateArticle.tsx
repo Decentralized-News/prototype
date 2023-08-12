@@ -11,6 +11,7 @@ import { DECENTNEWS__ADDRESS } from "../../utils/constants";
 import DecentnewsABI from "../../utils/DecentNewsAbi.json";
 import { useCreateArticleMutation } from "../../services/articleApi";
 const { TextArea } = Input;
+//@ts-ignore
 import { SHA256 } from "crypto-js";
 import { Article } from "../../models/CreateArticleRequest";
 import usenotification from "../../utils/usenotification.ts";
@@ -22,9 +23,6 @@ const CreateArticle = () => {
     const [authorOrigin, setAuthorOrigin] = useState("");
     const [tags, setTags] = useState("Politics");
     const { address } = useAccount();
-    const [articleHash, setArticleHash] = useState(
-        "0xf12b5e2f8e4a8d0b76d8e4f97b2a5e43f065e9f29b9d2920849a95baf4567d59"
-    );
     const [createArticle, {}] = useCreateArticleMutation();
     const notification = usenotification();
 
