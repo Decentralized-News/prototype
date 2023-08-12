@@ -1,7 +1,18 @@
 import ArticleDetailSceleton from "./ArticleDetailSceleton.tsx";
 import MainLayout from "../MainLayout.tsx";
+import {Button} from "antd";
 
 function ArticleDetailVerify() {
+    const approveButton = (
+        <Button shape="round" type="primary" className={"bg-primary"}>
+            Approve
+        </Button>
+    )
+    const rejectButton = (
+        <Button shape="round" className="text-white">
+            Reject
+        </Button>
+    )
     const article =
         {
             articleId: "1234",
@@ -32,14 +43,24 @@ function ArticleDetailVerify() {
 
     return (
         <MainLayout>
-            <div>
+            <div className="justify-center">
                 <div className="">
                     <ArticleDetailSceleton title={article.title} author={article.author}
                                            authorOrigin={article.authorOrigin}
                                            date={article.date} tag={article.tag} text={article.text}/>
                 </div>
-                <div className={`bottom-0 fixed w-full rounded-2xl m-[5rem] border ${article.tag}-gradient`}>
-                    This is the sticky text at the bottom of the viewport.
+                <div
+                    className={`flex flex-wrap bottom-0 fixed w-10/12  rounded-2xl ml-[7rem] mb-[5rem] mr-[5rem] border ${article.tag}-gradient`}>
+                    <div>
+                        <div className="mt-2 mx-2 text-white text-3xl font-semibold line-clamp-2">Approve Article</div>
+                        <div className="mt-2 mx-2 text-white  line-clamp-2">The article does not spread false
+                            information and does not violate any laws, human rights or maliciously harms third parties.
+                        </div>
+                    </div>
+                    <div className="md:flex flex-nowrap w-full justify-end gap-5 p-4 mr-5 ">
+                        {approveButton}
+                        {rejectButton}
+                    </div>
                 </div>
             </div>
         </MainLayout>
