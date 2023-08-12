@@ -1,4 +1,6 @@
 import { Card } from "antd";
+import { AiFillEye } from "react-icons/ai";
+import { HiCursorClick } from "react-icons/hi";
 
 interface ArticleCardProps {
   title: string;
@@ -10,8 +12,16 @@ interface ArticleCardProps {
 
 function ArticleCard(props: ArticleCardProps) {
   return (
-    <Card className="bg-gradient-to-r from-primary to-amber-500 rounded-2xl w-[550px]">
-      <div className="mx-2 text-white text-5xl font-semibold line-clamp-2">
+    <Card className="bg-gradient-to-r from-primary to-amber-500 rounded-2xl w-full">
+      <div className="ml-2 flex">
+        <button className="button-metric">
+          {<AiFillEye />} {"1.7B"}
+        </button>
+        <button className="ml-2 button-metric">
+          {<HiCursorClick />} {"10.2K"}
+        </button>
+      </div>
+      <div className="mt-2 mx-2 text-white text-5xl font-semibold line-clamp-2">
         {props.title}
       </div>
       <div className="mx-2 mt-2 h-10 relative">
@@ -22,7 +32,7 @@ function ArticleCard(props: ArticleCardProps) {
           {props.authorOrigin}
         </div>
       </div>
-      <div className="mt-6 flex">
+      <div className="ml-2 mt-6 flex">
         <button className="button-primary pointer-events-none">
           {props.date}
         </button>
