@@ -1,6 +1,7 @@
 import { Card } from "antd";
 import { AiFillEye } from "react-icons/ai";
 import { HiCursorClick } from "react-icons/hi";
+import {TAG} from "../../utils/const.ts";
 
 interface ArticleCardProps {
   title: string;
@@ -9,10 +10,19 @@ interface ArticleCardProps {
   date: string;
   tag: string;
 }
+type TagMap = {
+    [key: string]: typeof TAG[keyof typeof TAG];
+};
+
+const tagValue: TagMap = TAG;
+
+function getTagValue(tag: string) {
+    return tagValue[tag];
+}
 
 function ArticleCard(props: ArticleCardProps) {
   return (
-    <Card className="bg-gradient-to-r from-primary to-amber-500 rounded-2xl w-full">
+    <Card className={`rounded-2xl w-full ${props.tag}-gradient`} >
       <div className="ml-2 flex">
         <button className="button-metric">
           {<AiFillEye />} {"1.7B"}
@@ -37,7 +47,7 @@ function ArticleCard(props: ArticleCardProps) {
           {props.date}
         </button>
         <button className="ml-4 button-secondary pointer-events-none">
-          {props.tag}
+          {getTagValue(props.tag)}
         </button>
       </div>
     </Card>
