@@ -11,8 +11,7 @@ import { DECENTNEWS__ADDRESS } from "../../utils/constants";
 import DecentnewsABI from "../../utils/DecentNewsAbi.json";
 import { useCreateArticleMutation } from "../../services/articleApi";
 const { TextArea } = Input;
-//@ts-ignore
-import { SHA256 } from "crypto-js";
+import { MD5 } from "crypto-js";
 import { Article } from "../../models/CreateArticleRequest";
 import usenotification from "../../utils/usenotification.ts";
 
@@ -47,17 +46,7 @@ const CreateArticle = () => {
     };
 
     function stringToBytes32(input: string) {
-        const encoder = new TextEncoder();
-        const inputBytes = encoder.encode(input);
-        const paddedBytes = new Uint8Array(32);
-        paddedBytes.set(inputBytes);
-
-        return (
-            "0x" +
-            Array.from(paddedBytes)
-                .map((byte) => byte.toString(16).padStart(2, "0"))
-                .join("")
-        );
+        return MD5(input)
     }
 
     const postArticle = async () => {
