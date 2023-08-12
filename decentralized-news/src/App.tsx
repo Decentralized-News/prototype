@@ -16,6 +16,13 @@ import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
 import { sepolia } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
+import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
+import { APIURL } from "./utils/constants.tsx";
+
+const client = new ApolloClient({
+    cache: new InMemoryCache(),
+    uri: APIURL
+})
 
 //@ts-ignore
 const { chains, publicClient } = configureChains([sepolia], [publicProvider()]);
@@ -45,15 +52,17 @@ function App() {
     return (
         <WagmiConfig config={wagmiConfig}>
             <RainbowKitProvider chains={chains} modalSize="compact">
-                <ConfigProvider
-                    theme={{
-                        token: {
-                            colorPrimary: "#7465BE",
-                        },
-                    }}
-                >
-                    <RouterProvider router={router}></RouterProvider>
-                </ConfigProvider>
+                <ApolloProvider client={client}>
+                    <ConfigProvider
+                        theme={{
+                            token: {
+                                colorPrimary: "#7465BE",
+                            },
+                        }}
+                    >
+                        <RouterProvider router={router}></RouterProvider>
+                    </ConfigProvider>
+                </ApolloProvider>
             </RainbowKitProvider>
         </WagmiConfig>
     );

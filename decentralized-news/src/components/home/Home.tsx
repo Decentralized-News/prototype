@@ -1,8 +1,17 @@
 import MainLayout from "../MainLayout";
 import ArticleCard from "./ArticleCard";
 import {Link} from "react-router-dom";
-
+import { useQuery, gql } from "@apollo/client";
+import { GET_APPROVED_ARTICLES } from "../../utils/constants";
+import { useEffect } from "react";
 const HomePage = () => {
+    //@ts-ignore
+    const {loading,error,data} = useQuery(GET_APPROVED_ARTICLES);
+    
+    useEffect(() => {
+        console.log(data.articleApproveds);
+      },[loading]);
+    
     const articles = [
         {
             articleId: "1234",
@@ -53,7 +62,8 @@ const HomePage = () => {
                         tag="politics"
                     />
                 </Link>
-                <div className="mt-10 text-black text-5xl font-semibold w-3/6 line-clamp-2 pb-5 ">Top stories curated by AI,
+                <div className="mt-10 text-black text-5xl font-semibold w-3/6 line-clamp-2 pb-5 ">
+                    Top stories curated by AI,
                     just for you
                 </div>
                 <div className="grid grid-cols-2 justify-center gap-10 mt-5">
