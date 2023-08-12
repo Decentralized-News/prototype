@@ -9,7 +9,8 @@ import "@rainbow-me/rainbowkit/styles.css";
 import Home from "./components/home/Home";
 import { ConfigProvider } from "antd";
 import CreateArticle from "./components/create/CreateArticle";
-import ArticelDetail from "./components/detailArticel/ArticelDetail.tsx";
+import ArticleDetail from "./components/detailArticel/ArticleDetail.tsx";
+import ArticleDetailVerify from "./components/detailArticel/ArticleDetailVerify.tsx";
 
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
@@ -35,7 +36,8 @@ const wagmiConfig = createConfig({
 function App() {
     const router = createBrowserRouter([
         { path: "/", element: <Home /> },
-        { path: "/articel-detail", element: <ArticelDetail /> },
+        { path: "/articel-detail", element: <ArticleDetail /> },
+        { path: "/articel-detail-verify", element: <ArticleDetailVerify /> },
         { path: "/create", element: <CreateArticle /> },
         { path: "*", element: <Navigate to="/" /> },
     ]);
