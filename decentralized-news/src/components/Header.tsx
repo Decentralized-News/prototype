@@ -24,7 +24,7 @@ const Header = () => {
         <nav className="relative z-30">
             <div className="hidden md:flex items-center justify-between flex-nowrap gap-2 p-4 h-16">
                 <Link to="/" className="flex flex-nowrap mr-5">
-                    <div className="text-black text-3xl font-semibold">DecentNews.</div>
+                    <div className="text-black text-3xl font-semibold italic">DecentNews.</div>
                 </Link>
                 <div className="md:flex justify-between flex-nowrap gap-16 p-4 mr-5">
                     <Link to="/hot"

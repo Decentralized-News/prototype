@@ -10,7 +10,7 @@ const HomePage = () => {
             author: "Clair Lacrosse",
             authorOrigin: "New York Times",
             date: "Aug 11, 2023",
-            tag: "Politics"
+            tag: "politics"
         },
         {
             articleId: "1234",
@@ -18,7 +18,7 @@ const HomePage = () => {
             author: "Clair Lacrosse",
             authorOrigin: "New York Times",
             date: "Aug 11, 2023",
-            tag: "Politics"
+            tag: "politics"
         },
         {
             articleId: "1234",
@@ -26,7 +26,7 @@ const HomePage = () => {
             author: "Clair Lacrosse",
             authorOrigin: "New York Times",
             date: "Aug 11, 2023",
-            tag: "Politics"
+            tag: "politics"
         },
         {
             articleId: "1234",
@@ -34,7 +34,7 @@ const HomePage = () => {
             author: "Clair Lacrosse",
             authorOrigin: "New York Times",
             date: "Aug 11, 2023",
-            tag: "Politics"
+            tag: "politics"
         },
     ]
     return (
@@ -50,7 +50,7 @@ const HomePage = () => {
                         author="Clair Lacrosse"
                         authorOrigin="New York Times"
                         date="Aug 11, 2023"
-                        tag="Politics"
+                        tag="politics"
                     />
                 </Link>
                 <div className="mt-10 text-black text-5xl font-semibold w-3/6 line-clamp-2 pb-5 ">Top stories curated by AI,
