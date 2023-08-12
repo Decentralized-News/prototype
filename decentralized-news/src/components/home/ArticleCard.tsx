@@ -12,7 +12,7 @@ interface ArticleCardProps {
 
 function ArticleCard(props: ArticleCardProps) {
   return (
-    <Card className="bg-gradient-to-r from-primary to-amber-500 rounded-2xl w-[550px]">
+    <Card className="bg-gradient-to-r from-primary to-amber-500 rounded-2xl w-full">
       <div className="ml-2 flex">
         <button className="button-metric">
           {<AiFillEye />} {"1.7B"}
