@@ -25,7 +25,7 @@ const Footer = () => {
           </li>
           <li>
             <Link to="/notice" className={"mr-4 hover:underline md:mr-6 "}>
-              {"label.legal-notice"}
+              {"Legal Notice"}
             </Link>
           </li>
         </ul>
