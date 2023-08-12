@@ -1,27 +1,19 @@
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {Button} from 'antd';
-import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { ConnecetBtn } from "./common/ConnectButton";
-import { useAccount } from 'wagmi'
+import {ConnecetBtn} from "./common/ConnectButton";
+import {useAccount} from 'wagmi'
 
 const Header = () => {
-    // const { isAuth } = FUNCTIONFORVARIFICATION()
     //@ts-ignore
-    const { connector: activeConnector, isConnected } = useAccount()
-
-
-    const connectButton = (
-        <Button shape="round">
-            Connect
-        </Button>
-    )
+    const {connector: activeConnector, isConnected} = useAccount()
+    const navigate = useNavigate()
     const createButton = (
-        <Button shape="round" type="primary" className={"bg-primary"}>
+        <Button shape="round" type="primary" className={"bg-primary"} onClick={() => navigate("/create")}>
             Create
         </Button>
     )
     const reviewButton = (
-        <Button shape="round">
+        <Button shape="round" onClick={() => navigate("/article-verify")}>
             Review
         </Button>
     )
@@ -33,32 +25,27 @@ const Header = () => {
                     <div className="text-black text-3xl font-semibold italic">DecentNews.</div>
                 </Link>
                 <div className="md:flex justify-between flex-nowrap gap-16 p-4 mr-5">
-                    <Link to="/hot"
+                    <a href="/#top"
                           className="transition-colors duration-300 ease-in-out hover:text-primary whitespace-nowrap ">
                         Top
-                    </Link>
-                    <Link to="/hot"
+                    </a>
+                    <a href="/#all"
                           className="transition-colors duration-300 ease-in-out hover:text-primary whitespace-nowrap ">
                         All
-                    </Link>
-                    <Link to="/hot"
+                    </a>
+                    <Link to="https://github.com/Decentralized-News"
                           className="transition-colors duration-300 ease-in-out hover:text-primary whitespace-nowrap ">
-                        Be A Writer
-                    </Link>
-                    <Link to="/hot"
-                          className="transition-colors duration-300 ease-in-out hover:text-primary whitespace-nowrap ">
-                        Reach out
+                        Documentation
                     </Link>
                 </div>
-                {/*todo: isAuth needs to be added*/}
-                
+
                 {isConnected ? (
                     <div className="md:flex justify-between flex-nowrap gap-5 p-4 mr-5">
                         {createButton}
                         {reviewButton}
                     </div>
                 ) : (
-                    <ConnecetBtn />
+                    <ConnecetBtn/>
                 )}
 
             </div>

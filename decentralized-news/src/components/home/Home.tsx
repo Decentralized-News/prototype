@@ -27,6 +27,7 @@ const HomePage = () => {
                 <Link
                     to={`/item-details?itemId=1234`}
                     key={0}
+                    id="top"
                     className="flex flex-col transform transition-transform duration-200 hover:scale-105 border-cgrey"
                 >
                     <ArticleCard
@@ -41,7 +42,7 @@ const HomePage = () => {
                     Top stories curated,
                     <br /> just for you
                 </div>
-                <div className="grid grid-cols-2 justify-center gap-10 mt-5">
+                <div className="grid grid-cols-2 justify-center gap-10 mt-5" id="all">
                     {articlesResponse?.articles?.map((article, index) => (
                         <Link
                             to={`/item-details?itemId=${article?.hash}`}
