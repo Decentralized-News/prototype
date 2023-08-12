@@ -10,6 +10,10 @@
   @apply h-12 flex items-center justify-center bg-white bg-opacity-10 text-white border border-white px-6 py-2 rounded-full font-medium text-lg;
 }
 
+.button-metric {
+  @apply h-12 flex items-center justify-center bg-white bg-opacity-30 text-white px-4 py-2 rounded-full font-medium text-lg;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
