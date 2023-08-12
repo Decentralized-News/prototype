@@ -19,7 +19,7 @@ module.exports = {
       blue_link: "#0645AD",
       blue_link_light: "#ADD8E6",
       green: colors.green,
-      red: colors.red
+      red: colors.red,
     }
   },
   plugins: [
