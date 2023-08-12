@@ -1,8 +1,14 @@
 import {Link} from "react-router-dom";
 import {Button} from 'antd';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+import { ConnecetBtn } from "./common/ConnectButton";
+import { useAccount } from 'wagmi'
 
 const Header = () => {
     // const { isAuth } = FUNCTIONFORVARIFICATION()
+    //@ts-ignore
+    const { connector: activeConnector, isConnected } = useAccount()
+
 
     const connectButton = (
         <Button shape="round">
@@ -11,12 +17,12 @@ const Header = () => {
     )
     const createButton = (
         <Button shape="round" type="primary" className={"bg-primary"}>
-            Connect
+            Create
         </Button>
     )
     const reviewButton = (
         <Button shape="round">
-            Connect
+            Review
         </Button>
     )
 
@@ -45,13 +51,14 @@ const Header = () => {
                     </Link>
                 </div>
                 {/*todo: isAuth needs to be added*/}
-                {false ? (
+                
+                {isConnected ? (
                     <div className="md:flex justify-between flex-nowrap gap-5 p-4 mr-5">
                         {createButton}
                         {reviewButton}
                     </div>
                 ) : (
-                    connectButton
+                    <ConnecetBtn />
                 )}
 
             </div>
