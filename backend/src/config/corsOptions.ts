@@ -1,5 +1,9 @@
 const allowedOrigins: string[] = [
     "https://fedecentnews-git-main-decentnews.vercel.app/",
+    "https://fedecentnews-git-main-decentnews.vercel.app",
+    "https://prototype-pz59lc12h-decentnews.vercel.app/",
+    "https://fedecentnews.vercel.app/",
+    "https://fedecentnews-8qrxfiab4-decentnews.vercel.app/",
 ];
 
 const corsOptions = {
