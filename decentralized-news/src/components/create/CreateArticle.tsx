@@ -17,7 +17,9 @@ import { Article } from "../../models/CreateArticleRequest";
 const CreateArticle = () => {
     const [content, setContent] = useState("");
     const [title, setTitle] = useState("");
-    const [tags, setTags] = useState(["Politics"]);
+    const [author, setAuthor] = useState("");
+    const [authorOrigin, setAuthorOrigin] = useState("");
+    const [tags, setTags] = useState("Politics");
     const { address } = useAccount();
     const [articleHash, setArticleHash] = useState(
         "0xf12b5e2f8e4a8d0b76d8e4f97b2a5e43f065e9f29b9d2920849a95baf4567d59"
@@ -33,7 +35,7 @@ const CreateArticle = () => {
 
     const handleChange = (value: string) => {
         console.log(`selected ${value}`);
-        // setTags(value.map { $0.toString});
+        setTags(value[0].toString());
     };
 
     const handleTitleChange = (e: any) => {
@@ -70,8 +72,8 @@ const CreateArticle = () => {
             title,
             tag: tags[0],
             content,
-            author: "Unknown",
-            authorOrigin: "No Country",
+            author: author,
+            authorOrigin: authorOrigin,
         };
         console.log(article);
 
@@ -102,14 +104,18 @@ const CreateArticle = () => {
                             value={title}
                             onChange={handleTitleChange}
                         ></Input>
-                        <div className="mx-2 mt-2 h-10 relative">
-                            <div className="left-0 top-0 absolute text-black text-lg font-medium">
-                                {"props.author"}
-                            </div>
-                            <div className="left-0 top-[21px] absolute text-black text-opacity-50 text-lg font-normal">
-                                {"props.authorOrigin"}
-                            </div>
-                        </div>
+                        <Input
+                            placeholder="Author Name"
+                            className="border-none focus:border-none focus:ring-0 text-black text-lg font-medium"
+                            value={author}
+                            onChange={(e) => setAuthor(e.target.value)}
+                        ></Input>
+                        <Input
+                            placeholder="Author Name"
+                            className="border-none focus:border-none focus:ring-0 text-black text-opacity-50 text-lg font-normal"
+                            value={authorOrigin}
+                            onChange={(e) => setAuthorOrigin(e.target.value)}
+                        ></Input>
                         <Select
                             className="mx-2 mt-6"
                             mode="tags"
