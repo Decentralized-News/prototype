@@ -114,7 +114,7 @@ function ArticleDetailVerify() {
                                         articleResponse?.articles.at(0)?.tag ??
                                         "politics"
                                     }
-                                    text={
+                                    content={
                                         articleResponse?.articles.at(0)
                                             ?.content ?? ""
                                     }
