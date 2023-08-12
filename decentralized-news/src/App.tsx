@@ -9,8 +9,8 @@ import "@rainbow-me/rainbowkit/styles.css";
 import Home from "./components/home/Home";
 import { ConfigProvider } from "antd";
 import CreateArticle from "./components/create/CreateArticle";
-import ArticleDetail from "./components/detailArticel/ArticleDetail.tsx";
-import ArticleDetailVerify from "./components/detailArticel/ArticleDetailVerify.tsx";
+import ArticleDetail from "./components/detailArticle/ArticleDetail.tsx";
+import ArticleDetailVerify from "./components/detailArticle/ArticleDetailVerify.tsx";
 
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
@@ -21,8 +21,8 @@ import { APIURL } from "./utils/constants.tsx";
 
 const client = new ApolloClient({
     cache: new InMemoryCache(),
-    uri: APIURL
-})
+    uri: APIURL,
+});
 
 //@ts-ignore
 const { chains, publicClient } = configureChains([sepolia], [publicProvider()]);

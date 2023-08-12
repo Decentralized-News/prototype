@@ -1,21 +1,20 @@
-import {TAG} from "../../utils/const.ts";
-import {Card, Image} from "antd";
-import {AiFillEye} from "react-icons/ai";
-import {HiCursorClick} from "react-icons/hi";
+import { TAG } from "../../utils/const.ts";
+import { Card, Image } from "antd";
+import { AiFillEye } from "react-icons/ai";
+import { HiCursorClick } from "react-icons/hi";
 
 interface ArticleProps {
-    title: string;
-    author: string;
-    authorOrigin: string;
-    date: string;
-    tag: string;
-    text: string;
+    title?: string;
+    author?: string;
+    authorOrigin?: string;
+    date?: string;
+    tag?: string;
+    content?: string;
 }
 
 const ArticleDetailSceleton = (props: ArticleProps) => {
-
     type TagMap = {
-        [key: string]: typeof TAG[keyof typeof TAG];
+        [key: string]: (typeof TAG)[keyof typeof TAG];
     };
 
     const tagValue: TagMap = TAG;
@@ -24,12 +23,12 @@ const ArticleDetailSceleton = (props: ArticleProps) => {
         return tagValue[tag];
     }
 
-    const parts = props.text.split(' ');
+    const parts = props.content?.split(" ") ?? [""];
 
     // Split the parts into two halves for the columns
     const middleIndex = Math.ceil(parts.length / 2);
-    const leftColumnText = parts.slice(0, middleIndex).join(' ');
-    const rightColumnText = parts.slice(middleIndex).join(' ');
+    const leftColumnText = parts.slice(0, middleIndex).join(" ");
+    const rightColumnText = parts.slice(middleIndex).join(" ");
 
     return (
         <div className="flex flex-wrap m-[5rem]">
@@ -37,10 +36,10 @@ const ArticleDetailSceleton = (props: ArticleProps) => {
                 <Card className="rounded-2xl w-8/12 ">
                     <div className="ml-2 flex">
                         <button className="button-metric">
-                            {<AiFillEye/>} {"1.7B"}
+                            {<AiFillEye />} {"1.7B"}
                         </button>
                         <button className="ml-2 button-metric">
-                            {<HiCursorClick/>} {"10.2K"}
+                            {<HiCursorClick />} {"10.2K"}
                         </button>
                     </div>
                     <div className="mt-2 mx-2 text-black text-5xl font-semibold line-clamp-2">
@@ -59,7 +58,7 @@ const ArticleDetailSceleton = (props: ArticleProps) => {
                             {props.date}
                         </button>
                         <button className="ml-4 button-detail-secondary pointer-events-none">
-                            {getTagValue(props.tag)}
+                            {getTagValue(props.tag ?? "politics")}
                         </button>
                     </div>
                 </Card>
@@ -68,11 +67,15 @@ const ArticleDetailSceleton = (props: ArticleProps) => {
                 </div>
             </div>
             <div className="flex flex-wrap justify-center mt-[3rem] gap-[5rem] mr-[1rem] mb-[80px]">
-                <p className="text-justify w-5/12 whitespace-pre-line">{leftColumnText}</p>
-                <p className="text-justify w-5/12 whitespace-pre-line">{rightColumnText}</p>
+                <p className="text-justify w-5/12 whitespace-pre-line">
+                    {leftColumnText}
+                </p>
+                <p className="text-justify w-5/12 whitespace-pre-line">
+                    {rightColumnText}
+                </p>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default ArticleDetailSceleton;
