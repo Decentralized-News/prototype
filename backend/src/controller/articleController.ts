@@ -3,11 +3,11 @@ import mongoose, { Error } from "mongoose";
 import Article from "../model/articleModel";
 
 // ROUTE POST /api/article
-// adds new user
 const createArticle = async (req: Request, res: Response) => {
     try {
-        const { title, content, tag, author, authorOrigin } = req.body;
+        const { hash, title, content, tag, author, authorOrigin } = req.body;
         const newArticle = await Article.create({
+            hash,
             title,
             content,
             tag,
@@ -24,4 +24,23 @@ const createArticle = async (req: Request, res: Response) => {
     }
 };
 
-export { createArticle };
+// ROUTE GET /api/article
+const getArticles = async (req: Request, res: Response) => {
+    try {
+        const { hashes } = req.body;
+        console.log(`Requesting articles for hashes: ${hashes}`);
+
+        const query = { hash: { $in: hashes } };
+
+        const articles = await Article.find(query);
+        console.log(articles);
+
+        res.status(200).json({
+            articles: articles,
+        });
+    } catch (e: any) {
+        res.status(400).json({ message: e.message });
+    }
+};
+
+export { createArticle, getArticles };
