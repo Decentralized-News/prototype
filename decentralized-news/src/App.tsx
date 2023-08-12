@@ -43,8 +43,8 @@ const wagmiConfig = createConfig({
 function App() {
     const router = createBrowserRouter([
         { path: "/", element: <Home /> },
-        { path: "/articel-detail", element: <ArticleDetail /> },
-        { path: "/articel-detail-verify", element: <ArticleDetailVerify /> },
+        { path: "/article-detail", element: <ArticleDetail /> },
+        { path: "/article-detail-verify", element: <ArticleDetailVerify /> },
         { path: "/create", element: <CreateArticle /> },
         { path: "*", element: <Navigate to="/" /> },
     ]);
