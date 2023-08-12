@@ -14,6 +14,8 @@ const { TextArea } = Input;
 import { SHA256 } from "crypto-js";
 import { Article } from "../../models/CreateArticleRequest";
 import usenotification from "../../utils/usenotification.ts";
+import { createHash } from'crypto';
+
 
 const CreateArticle = () => {
     const [content, setContent] = useState("");
@@ -48,6 +50,9 @@ const CreateArticle = () => {
         setContent(e.target.value);
     };
 
+    function hash(input: string) {
+        return createHash('sha256').update(input).digest('hex');
+    }
     function stringToBytes32(input: string) {
         const encoder = new TextEncoder();
         const inputBytes = encoder.encode(input);
@@ -63,7 +68,7 @@ const CreateArticle = () => {
     }
 
     const postArticle = async () => {
-        const articleHash = stringToBytes32(title + content)?.toString() ?? "";
+        const articleHash = hash(title + content)?.toString() ?? "";
 
         if (articleHash === "") {
             return;
