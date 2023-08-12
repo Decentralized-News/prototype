@@ -7,10 +7,13 @@ import React from "react";
 import { DECENTNEWS__ADDRESS } from "../../utils/constants";
 import DecentnewsABI from "../../utils/DecentNewsAbi.json"
 import { useState } from "react";
+import usenotification from "../../utils/usenotification.ts";
 
 function ArticleDetailVerify() {
     const { address } = useAccount()
     const [assignedArticle, setAssignedArticle] = useState("");
+    const notification = usenotification()
+
     
         //@ts-ignore
     const { data, isError, isLoading } = useContractRead({
@@ -40,8 +43,12 @@ function ArticleDetailVerify() {
                 args: [],
             });
             console.log(hash);
+            notification("success", "Article requested", "Please verify the article now")
+
         }catch(err){
             console.error(err);
+            notification("error", "Article requesting failed", "Please try again")
+
         }
     }
 
@@ -55,8 +62,12 @@ function ArticleDetailVerify() {
                 args: [vote],
             });
             console.log(hash);
+            notification("success", "Article verification send", "Thank you for your contribution :)")
+
         }catch(err){
             console.error(err);
+            notification("error", "Article verification failed", "Please try again")
+
         }
 }
 
