@@ -20,15 +20,6 @@ module.exports = {
       blue_link_light: "#ADD8E6",
       green: colors.green,
       red: colors.red,
-      politicsFrom: '#7465BE',
-      politicsTo: '#5379CB',
-      scienceFrom: '#EA9C9D',
-      scienceTo: '#F29741',
-      sportsFrom: '#7465BE',
-      sportsTo: '#5379CB',
-      economicsFrom: '#7465BE',
-      economicsTo: '#5379CB',
-
     }
   },
   plugins: [
