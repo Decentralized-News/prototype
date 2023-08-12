@@ -5,14 +5,16 @@ import {
 } from "react-router-dom";
 import "./App.css";
 import Home from "./components/home/Home";
+import { ConfigProvider } from "antd";
+import CreateArticle from "./components/create/CreateArticle";
 import ArticelDetail from "./components/detailArticel/ArticelDetail.tsx";
-import {ConfigProvider} from "antd";
 
 function App() {
     const router = createBrowserRouter([
-        {path: "/", element: <Home/>},
-        {path: "/articel-detail", element: <ArticelDetail/>},
-        {path: "*", element: <Navigate to="/"/>},
+        { path: "/", element: <Home /> },
+        { path: "/articel-detail", element: <ArticelDetail /> },
+        { path: "/create", element: <CreateArticle /> },
+        { path: "*", element: <Navigate to="/" /> },
     ]);
 
     return (
@@ -24,7 +26,8 @@ function App() {
             }}
         >
             <RouterProvider router={router}></RouterProvider>
-        </ConfigProvider>);
+        </ConfigProvider>
+    );
 }
 
 export default App;
