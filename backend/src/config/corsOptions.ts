@@ -1,4 +1,6 @@
-const allowedOrigins: string[] = ["http://localhost:5173"];
+const allowedOrigins: string[] = [
+    "https://fedecentnews-git-main-decentnews.vercel.app/",
+];
 
 const corsOptions = {
     origin: (origin: any, callback: any) => {
